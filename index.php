@@ -1,8 +1,8 @@
 <?php
 include "db.php";
 
-$query = 'SELECT * FROM portfolioSh.portfolio_AdiLevi ORDER BY "proj_id"';
-$result = mysqli_query($connection, $query);
+// $query = 'SELECT * FROM team15_Event';
+// $result = mysqli_query($connection, $query);
 ?>
 
 <!DOCTYPE html>
