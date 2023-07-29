@@ -1,0 +1,27 @@
+/* All Elements Settings */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header,
+main,
+footer,
+nav,
+aside,
+section,
+article {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-flow: column;
+}
