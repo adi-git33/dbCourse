@@ -124,6 +124,7 @@ label {
 #insertEmp,
 #discount,
 #saleIncome,
-#result {
+#result,
+#ttlChoice {
     display: none;
 }
