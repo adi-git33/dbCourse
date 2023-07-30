@@ -108,7 +108,6 @@ include "db.php";
                     <input type="submit" value="Submit Choice" id="submitBtn">
                 </form>
                 <div id="result">
-                    
                 </div>
             </div>
         </main>
