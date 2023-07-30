@@ -20,6 +20,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 $tbl .= '</table>';
 
-isset($_POST["sort"])
+isset($_GET["sort"])
 
     ?>
