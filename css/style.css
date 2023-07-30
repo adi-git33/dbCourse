@@ -81,12 +81,26 @@ h1 {
     align-self: center;
 }
 
-ol>li {
+ol {
+    margin: 0px;
+}
+
+ol>li,
+label {
     font-size: calc(0.5rem + 1vw);
 }
 
 .form-select {
     width: 250px;
+}
+
+.form-control {
+    width: 300px;
+    margin: 5px 0px;
+}
+
+.mb-3 {
+    margin: 20px 0px;
 }
 
 #submitBtn {
@@ -103,4 +117,13 @@ ol>li {
 #submitBtn:hover {
     color: #212529;
     background-color: #FFFFFF;
+}
+
+#pastEv,
+#incomes,
+#insertEmp,
+#discount,
+#saleIncome,
+#result {
+    display: none;
 }
