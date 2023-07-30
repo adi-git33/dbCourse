@@ -4,9 +4,10 @@ $(document).ready(function () {
     let count = 0;
 
     sub.on('click', function (e) {
+        debugger
         e.preventDefault();
-        if (count = 0) {
-            let query = document.getElementById("querSel").value;
+        if (count == 0) {
+            let query = $("#querSel").val()
             let sel = $("#querSel");
             sel.css("display", "none");
             let ttlChoice = $("ttlChoice");
