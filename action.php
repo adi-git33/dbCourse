@@ -12,12 +12,13 @@ if (!$result) {
 $tbl = '<table class="table table-dark table-hover">';
 
 while ($row = mysqli_fetch_assoc($result)) {
-    
+    $tbl .= "<tr>
+<td>row 1, cell 1<\td>
+<td>row 1, cell 2<\td>
+<\tr>";
 }
 
-
-
-$tbl = '</table>';
+$tbl .= '</table>';
 
 isset($_POST["sort"])
 

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const sub = $("#submitBtn");
-    let count = 0;
     const tbl = $(".result");
+    let count = 0;
 
     sub.on('click', function (e) {
         e.preventDefault();
