@@ -12,35 +12,29 @@ $(document).ready(function () {
             sel.css("display", "none");
 
             if ((query == 1) || (query = 5) || (query = 6) || (query = 7) || (query = 8)) {
-                let ttlChoice = $("ttlChoice");
-                ttlChoice.html = "<h3>Enter Inputs for choice " + query + "</h3";
-                ttlChoice.css("display, block");
-                switch (query) {
-                    case 1: {
-                        let pastEv = $("#pastEv");
-                        pastEv.css("display", "block");
-                        break;
-                    }
-                    case 5: {
-                        let incomes = $("#incomes");
-                        incomes.css("display", "block");
-                        break;
-                    }
-                    case 6: {
-                        let insertEmp = $("#insertEmp");
-                        insertEmp.css("display", "block");
-                        break;
-                    }
-                    case 7: {
-                        let discount = $("#discount");
-                        discount.css("display", "block");
-                        break;
-                    }
-                    case 8: {
-                        let saleIncome = $("#saleIncome");
-                        saleIncome.css("display", "block");
-                        break;
-                    }
+                let title =$("selTitle");
+                title.css("display", "block");
+                let tHtml = `Selected choise: ${query}`;
+                title.html(tHtml);
+
+                if (query == 1) {
+                    let pastEv = $("#pastEv");
+                    pastEv.css("display", "block");
+                }
+                else if (query == 5) {
+                    let incomes = $("#incomes");
+                    incomes.css("display", "block");
+                }
+                else if (query == 6) {
+                    let insertEmp = $("#insertEmp");
+                    insertEmp.css("display", "block");
+                } else if (query == 7) {
+                    let discount = $("#discount");
+                    discount.css("display", "block");
+                }
+                else {
+                    let saleIncome = $("#saleIncome");
+                    saleIncome.css("display", "block")
                 }
                 count++;
             } else {

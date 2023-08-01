@@ -55,7 +55,6 @@ include "db.php";
                     <li>Give event price percentage discount.</li>
                     <li>Display incomes for specific salesman in x month.</li>
                 </ol>
-                <div id="ttlChoice"></div>
                 <form action="action.php">
                     <select class="form-select form-select-lg" aria-label="Large select example" data-bs-theme="dark"
                         name="qSelect" id="querSel">
@@ -69,6 +68,7 @@ include "db.php";
                         <option value="7">7</option>
                         <option value="8">8</option>
                     </select>
+                    <h3 id="selTitle"></h3>
                     <div class="mb-3" id="pastEv">
                         <label>Choose number of weeks</label>
                         <input type="number" class="form-control form-control-lg" placeholder="Number of weeks"
