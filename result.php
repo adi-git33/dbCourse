@@ -280,7 +280,7 @@
     <div id="wrapper">
         <header>
             <section>
-                <a href="bookList.php" id="logo"></a>
+                <a href="index.php" id="logo"></a>
             </section>
             <section>
                 <img src="images/user.png" alt="profile">
