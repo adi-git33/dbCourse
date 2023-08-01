@@ -23,6 +23,10 @@ $(document).ready(function () {
                 if (query == 1) {
                     let pastEv = $("#pastEv");
                     pastEv.css("display", "block");
+                    let pastEvChild =pastEv.children("input");
+                    for (let i = 0; i < pastEvChild.lengh; i++){
+                        
+                    }
                 }
                 else if (query == 5) {
                     let incomes = $("#incomes");
