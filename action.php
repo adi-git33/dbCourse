@@ -1,19 +1,19 @@
 <?php
 include "db.php";
 
-isset($_GET["numOfMonths"]){
+if (isset($_GET["numOfMonths"])) {
     $numOfMonths = $_GET['numOfMonths'];
 }
 
-isset($_GET["numOfWeeks"]){
+if (isset($_GET["numOfWeeks"])) {
     $numOfWeeks = $_GET['numOfWeeks'];
 }
-isset($_GET["qSelect"]){
+if (isset($_GET["qSelect"])) {
     $option = $_GET["qSelect"];
 }
 
 $tbl = '<table class="table table-dark table-hover">';
-switch($option){
+switch ($option) {
     case 1:
         $quary1 = "SELECT 
         ev.event_id,
@@ -30,11 +30,11 @@ switch($option){
         team15_Event_Type AS evt ON ev.event_type_id = evt.event_type_id
     WHERE
         event_date >= DATE_SUB(CURDATE(), INTERVAL $numOfWeeks WEEK)
-            AND event_date <= CURDATE();"
+            AND event_date <= CURDATE();";
 
         $result = mysqli_query($connection, $query1);
         if (!$result) {
-             die("DB query failed.");
+            die("DB query failed.");
         }
 
         $tbl .= "<tr>
@@ -44,17 +44,17 @@ switch($option){
         <th>guests</th> 
         <th>date</th>
         <th>price</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .="<tr>
+            $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
-            <td>" . $row["course_name"] ."<\td>
-            <td>".$row["event_type_name"]."<\td>
-            <td>".$row["num_of_guest"]."<\td>
-            <td>".$row["event_date"]."<\td>
-            <td>".$row["price"]."<\td>
+            <td>" . $row["course_name"] . "<\td>
+            <td>" . $row["event_type_name"] . "<\td>
+            <td>" . $row["num_of_guest"] . "<\td>
+            <td>" . $row["event_date"] . "<\td>
+            <td>" . $row["price"] . "<\td>
             <\tr>";
-            }
+        }
 
         break;
     case 2:
@@ -68,12 +68,12 @@ switch($option){
         team15_Person AS per ON per.person_id = evco.person_id
         WHERE
         ev.event_date > NOW();";
-        
+
         $result = mysqli_query($connection, $query2);
         if (!$result) {
             die("DB query failed.");
         }
-        
+
         $tbl .= "<tr>
         <th>event id</th>
         <th>course type</th>
@@ -87,21 +87,21 @@ switch($option){
         <th>first name</th> 
         <th>last name</th> 
         <th>phone</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-        $tbl .="<tr>
+            $tbl .= "<tr>
         <td>" . $row["event_id"] . "<\td>
-        <td>" . $row["course_name"] ."<\td>
-        <td>".$row["event_type_name"]."<\td>
-        <td>".$row["num_of_guest"]."<\td>
-        <td>".$row["event_date"]."<\td>
-        <td>".$row["price"]."<\td>
-        <td>".$row["person_id"]."<\td>
-        <td>".$row["address_name"]."<\td>
-        <td>".$row["city_name"]."<\td>
-        <td>".$row["first_name"]."<\td>
-        <td>".$row["last_name"]."<\td>
-        <td>".$row["phone"]."<\td>
+        <td>" . $row["course_name"] . "<\td>
+        <td>" . $row["event_type_name"] . "<\td>
+        <td>" . $row["num_of_guest"] . "<\td>
+        <td>" . $row["event_date"] . "<\td>
+        <td>" . $row["price"] . "<\td>
+        <td>" . $row["person_id"] . "<\td>
+        <td>" . $row["address_name"] . "<\td>
+        <td>" . $row["city_name"] . "<\td>
+        <td>" . $row["first_name"] . "<\td>
+        <td>" . $row["last_name"] . "<\td>
+        <td>" . $row["phone"] . "<\td>
         <\tr>";
         }
 
@@ -122,7 +122,7 @@ switch($option){
         WHERE
         emp_count.chefs_on_event < CEILING(emp_count.num_of_guest / 20)
             AND emp_count.waiters_on_event < CEILING(emp_count.num_of_guest / 35);";
-        
+
         $result = mysqli_query($connection, $query3);
         if (!$result) {
             die("DB query failed.");
@@ -132,14 +132,14 @@ switch($option){
         <th>event id</th>
         <th>chefs needed</th>
         <th>waiters needed</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .="<tr>
+            $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
-            <td>" . $row["chefs_needed"] ."<\td>
-            <td>".$row["waiters_needed"]."<\td>
+            <td>" . $row["chefs_needed"] . "<\td>
+            <td>" . $row["waiters_needed"] . "<\td>
             <\tr>";
-            }
+        }
 
         break;
     case 4:
@@ -155,28 +155,28 @@ switch($option){
             INNER JOIN
         team15_Event_Customer AS ec ON p.person_id = ec.person_id
     GROUP BY p.first_name , p.last_name
-    HAVING num_of_events > 1;"
+    HAVING num_of_events > 1;";
 
-$result = mysqli_query($connection, $query4);
-if (!$result) {
-    die("DB query failed.");
-}
+        $result = mysqli_query($connection, $query4);
+        if (!$result) {
+            die("DB query failed.");
+        }
 
-$tbl .= "<tr>
-<th>person id</th>
-<th>first name</th>
-<th>last name</th>
-<th>occouring events</th> 
-</tr>"
+            $tbl .= "<tr>
+                <th>person id</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>occouring events</th> 
+                </tr>";
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $tbl .="<tr>
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tbl .= "<tr>
     <td>" . $row["person_id"] . "<\td>
-    <td>" . $row["first_name"] ."<\td>
-    <td>".$row["last_name"]."<\td>
-    <td>".$row["num_of_events"]."<\td>
+    <td>" . $row["first_name"] . "<\td>
+    <td>" . $row["last_name"] . "<\td>
+    <td>" . $row["num_of_events"] . "<\td>
     <\tr>";
-    }
+        }
         break;
     case 5:
         $query5 = "SELECT 
@@ -186,24 +186,24 @@ while ($row = mysqli_fetch_assoc($result)) {
         WHERE
         ev.event_date >= DATE_SUB(CURDATE(), INTERVAL $numOfMonths MONTH)
             AND ev.event_date < CURDATE();
-        "
-        
+        ";
+
         $result = mysqli_query($connection, $query5);
         if (!$result) {
             die("DB query failed.");
         }
-        
+
         $tbl .= "<tr>
         <th>event id</th>
         <th>incomes</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .="<tr>
+            $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
-            <td>" . $row["incomes"] ."<\td>
+            <td>" . $row["incomes"] . "<\td>
             <\tr>";
-            }
-        break; 
+        }
+        break;
     case 6:
         break;
     case 7:
@@ -213,4 +213,4 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 
-    ?>
+?>
