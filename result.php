@@ -21,7 +21,7 @@ if ((isset($_GET["eveIDSix"])) && (isset($_GET["empIDSix"]))) {
 }
 
 
-$tbl = '<table class="table table-dark table-hover">';
+$tbl = '<table class="table table-dark table-hover table-responsive-lg">';
 switch ($option) {
     case 1:
         $quary1 = "SELECT 
@@ -72,11 +72,11 @@ switch ($option) {
         FROM
         team15_Event AS ev
             INNER JOIN
-        team15_Event_Costumer AS evco ON ev.event_id = evco.event_id
+        team15_Event_Customer AS evco ON ev.event_id = evco.event_id
             INNER JOIN
         team15_Person AS per ON per.person_id = evco.person_id
         WHERE
-        ev.event_date > NOW();";
+        ev.event_date > NOW()";
 
         $result = mysqli_query($connection, $query2);
         if (!$result) {
@@ -136,7 +136,6 @@ switch ($option) {
         if (!$result) {
             die("DB query failed.");
         }
-
         $tbl .= "<tr>
         <th>event id</th>
         <th>chefs needed</th>
@@ -265,6 +264,9 @@ $tbl .= " <\table>";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Data table  -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> -->
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Adi and Moran dbCourse Project</title>
