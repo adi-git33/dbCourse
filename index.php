@@ -4,7 +4,6 @@ include "db.php";
 // $query = 'SELECT * FROM team15_Event';
 // $result = mysqli_query($connection, $query);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,29 +79,32 @@ include "db.php";
                     </div>
                     <div class="mb-3" id="insertEmp">
                         <label>Enter Event ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark">
+                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="eveIDSix">
                         <label>Enter Employee ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark">
+                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="empIDSix">
                     </div>
                     <div class="mb-3" id="discount">
                         <label for="">Enter Event ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark">
+                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="eveIDSeven">
                         <label for="">Enter percentage in float form</label>
                         <input type="test" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
                             name="percent">
                     </div>
                     <div class="mb-3" id="saleIncome">
                         <label>Enter Salesman First Name</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="FIrst Name"
-                            data-bs-theme="dark">
+                        <input type="test" class="form-control form-control-lg" placeholder="First Name"
+                            data-bs-theme="dark" name="fname">
                         <label>Enter Salesman Last Name</label>
                         <input type="test" class="form-control form-control-lg" placeholder="Last Name"
-                            data-bs-theme="dark">
+                            data-bs-theme="dark" name="lname">
                         <label>Enter Month</label>
                         <input type="number" class="form-control form-control-lg" placeholder="Month"
-                            data-bs-theme="dark" min="1" max="12" name="numOfMonths">
+                            data-bs-theme="dark" min="1" max="12" name="numOfMonths" name="monthsEight">
                         <label>Enter Year</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="Year" data-bs-theme="dark">
+                        <input type="test" class="form-control form-control-lg" placeholder="Year" data-bs-theme="dark" name="yearEight">
                     </div>
                     <input type="submit" value="Submit Choice" id="submitBtn">
                 </form>
