@@ -74,18 +74,18 @@
                     <div class="mb-3" id="insertEmp">
                         <label>Enter Event ID</label>
                         <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="eveIDSix" min="1" max="10">
+                            name="eveIDSix" min="1">
                         <label>Enter Employee ID</label>
                         <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="empIDSix" min="1" max="10">
+                            name="empIDSix" min="1">
                     </div>
                     <div class="mb-3" id="discount">
                         <label for="">Enter Event ID</label>
                         <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="eveIDSeven" min="1" max="10"> 
+                            name="eveIDSeven" min="1"> 
                         <label for="">Enter percentage in float form</label>
                         <input type="number" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
-                            name="percent" min="1" max="10">
+                            name="percent">
                     </div>
                     <div class="mb-3" id="saleIncome">
                         <label>Enter Salesman First Name</label>

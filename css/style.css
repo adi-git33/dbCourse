@@ -92,6 +92,14 @@ label {
     font-size: calc(0.5rem + 0.8vw);
 }
 
+th {
+    font-size: calc(0.5rem + 0.8vw);
+}
+
+td {
+    font-size: calc(0.5rem + 0.5vw);
+}
+
 .form-select {
     width: 250px;
 }
