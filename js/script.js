@@ -2,7 +2,7 @@ $(document).ready(function () {
     const sub = $("#submitBtn");
     const tbl = $(".result");
     let count = 0;
-    let frm = document.getElementById("frm");
+    let frm = $("#frm");
 
     frm.on('submit', function (e) {
         debugger
@@ -41,32 +41,32 @@ $(document).ready(function () {
                 }
             } else {
                 count = 0;
-                savePost();
-                // frm.off('submit');
-                // frm.submit(); 
+                // savePost();
+                frm.off('submit');
+                frm.submit(); 
             }
         }
         else {
             count = 0;
-            savePost();
-            // frm.off('submit');
-            // frm.submit(); 
+            // savePost();
+            frm.off('submit');
+            frm.submit(); 
         }
     })
 
-    const savePost = async() => {
-        try {
-        debugger
+    // const savePost = async() => {
+    //     try {
+    //     debugger
 
-            let response = await fetch('action.php', {
-                method: 'GET',
-                body: new FormData(frm),
-            });
-            const result = await response.json();
-            tbl.html(result.retVal);
-        } catch (error) {
-            console.log(error);
-            tbl.html(("<span class='l'>" + error + "<span>"));
-        }
-    }
+    //         let response = await fetch('sortFilter.php', {
+    //             method: 'GET',
+    //             body: new FormData(frm),
+    //         });
+    //         const result = await response.json();
+    //         list.html(result.retVal);
+    //     } catch (error) {
+    //         console.log(error);
+    //         list.html(("<span class='l'>" + error + "<span>"));
+    //     }
+    // }
 });

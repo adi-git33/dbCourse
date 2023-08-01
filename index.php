@@ -48,7 +48,7 @@
                     <li>7. Give event price percentage discount.</li>
                     <li>8. Display incomes for specific salesman in x month.</li>
                 </ul>
-                <form action="action.php" id="frm">
+                <form action="result.php" id="frm">
                     <select class="form-select form-select-lg" aria-label="Large select example" data-bs-theme="dark"
                         name="qSelect" id="querSel">
                         <option selected disabled>Select Option</option>
@@ -73,19 +73,19 @@
                     </div>
                     <div class="mb-3" id="insertEmp">
                         <label>Enter Event ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="eveIDSix">
+                        <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="eveIDSix" min="1" max="10">
                         <label>Enter Employee ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="empIDSix">
+                        <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="empIDSix" min="1" max="10">
                     </div>
                     <div class="mb-3" id="discount">
                         <label for="">Enter Event ID</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
-                            name="eveIDSeven">
+                        <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
+                            name="eveIDSeven" min="1" max="10"> 
                         <label for="">Enter percentage in float form</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
-                            name="percent">
+                        <input type="number" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
+                            name="percent" min="1" max="10">
                     </div>
                     <div class="mb-3" id="saleIncome">
                         <label>Enter Salesman First Name</label>
@@ -96,9 +96,9 @@
                             data-bs-theme="dark" name="lname">
                         <label>Enter Month</label>
                         <input type="number" class="form-control form-control-lg" placeholder="Month"
-                            data-bs-theme="dark" min="1" max="12" name="numOfMonths" name="monthsEight">
+                            data-bs-theme="dark" min="1" max="12" name="monthsEight">
                         <label>Enter Year</label>
-                        <input type="test" class="form-control form-control-lg" placeholder="Year" data-bs-theme="dark" name="yearEight">
+                        <input type="number" class="form-control form-control-lg" placeholder="Year" data-bs-theme="dark" name="yearEight" min="2023" max="2024">
                     </div>
                     <input type="submit" value="Submit Choice" id="submitBtn">
                 </form>
