@@ -81,13 +81,15 @@ h1 {
     align-self: center;
 }
 
-ol {
+ul {
+    padding: 0px;
     margin: 0px;
+    list-style-type: none;
 }
 
-ol>li,
+ul>li,
 label {
-    font-size: calc(0.5rem + 1vw);
+    font-size: calc(0.5rem + 0.8vw);
 }
 
 .form-select {

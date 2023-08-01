@@ -11,11 +11,13 @@ $(document).ready(function () {
             let sel = $("#querSel");
             sel.css("display", "none");
 
-            if ((query == 1) || (query = 5) || (query = 6) || (query = 7) || (query = 8)) {
-                let title =$("selTitle");
-                title.css("display", "block");
-                let tHtml = `Selected choise: ${query}`;
-                title.html(tHtml);
+            if ((query == 1) || (query == 5) || (query == 6) || (query == 7) || (query == 8)) {
+                let QPF = $("#QPF").children();
+                for (let i=0; i<=8; i++){
+                    if(i != (query-1)) {
+                        $(QPF.eq(i)).css("display", "none")
+                    }
+                }
 
                 if (query == 1) {
                     let pastEv = $("#pastEv");
