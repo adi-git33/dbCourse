@@ -13,8 +13,8 @@ $(document).ready(function () {
 
             if ((query == 1) || (query == 5) || (query == 6) || (query == 7) || (query == 8)) {
                 let QPF = $("#QPF").children();
-                for (let i=0; i<8; i++){
-                    if(i!= query){
+                for (let i=0; i<=8; i++){
+                    if(i != (query-1)) {
                         $(QPF.eq(i)).css("display", "none")
                     }
                 }
