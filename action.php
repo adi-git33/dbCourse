@@ -4,6 +4,7 @@ include "db.php";
 isset($_GET["numOfMonths"]){
     $numOfMonths = $_GET['numOfMonths'];
 }
+
 isset($_GET["numOfWeeks"]){
     $numOfWeeks = $_GET['numOfWeeks'];
 }
