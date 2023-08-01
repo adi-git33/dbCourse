@@ -162,21 +162,20 @@ if (!$result) {
 }
 
 $tbl .= "<tr>
-<th>event id</th>
-<th>course type</th>
-<th>event type</th>
-<th>guests</th> 
-<th>date</th>
-<th>price</th>
-<th>person id</th> 
-<th>address</th> 
-<th>city</th>
-<th>first name</th> 
-<th>last name</th> 
-<th>phone</th>
+<th>person id</th>
+<th>first name</th>
+<th>last name</th>
+<th>occouring events</th> 
 </tr>"
 
-        
+while ($row = mysqli_fetch_assoc($result)) {
+    $tbl .="<tr>
+    <td>" . $row["person_id"] . "<\td>
+    <td>" . $row["first_name"] ."<\td>
+    <td>".$row["last_name"]."<\td>
+    <td>".$row["num_of_events"]."<\td>
+    <\tr>";
+    }
         break;
     case 5:
         $query5 = "SELECT 
