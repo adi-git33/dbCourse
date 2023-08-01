@@ -72,7 +72,7 @@ switch ($option) {
         FROM
         team15_Event AS ev
             INNER JOIN
-        team15_Event_Costumer AS evco ON ev.event_id = evco.event_id
+        team15_Event_Customer AS evco ON ev.event_id = evco.event_id
             INNER JOIN
         team15_Person AS per ON per.person_id = evco.person_id
         WHERE
