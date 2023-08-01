@@ -1,13 +1,13 @@
 <?php
 include "db.php";
 
-isset($_GET["numOfMonths"]){
+if(isset($_GET["numOfMonths"])){
     $numOfMonths = $_GET['numOfMonths'];
 }
-isset($_GET["numOfWeeks"]){
+if(isset($_GET["numOfWeeks"])){
     $numOfWeeks = $_GET['numOfWeeks'];
 }
-isset($_GET["qSelect"]){
+if(isset($_GET["qSelect"])){
     $option = $_GET["qSelect"];
 }
 
@@ -29,7 +29,7 @@ switch($option){
         team15_Event_Type AS evt ON ev.event_type_id = evt.event_type_id
     WHERE
         event_date >= DATE_SUB(CURDATE(), INTERVAL $numOfWeeks WEEK)
-            AND event_date <= CURDATE();"
+            AND event_date <= CURDATE()";
 
         $result = mysqli_query($connection, $query1);
         if (!$result) {
@@ -43,7 +43,7 @@ switch($option){
         <th>guests</th> 
         <th>date</th>
         <th>price</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .="<tr>
             <td>" . $row["event_id"] . "<\td>
@@ -86,7 +86,7 @@ switch($option){
         <th>first name</th> 
         <th>last name</th> 
         <th>phone</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
         $tbl .="<tr>
         <td>" . $row["event_id"] . "<\td>
@@ -131,7 +131,7 @@ switch($option){
         <th>event id</th>
         <th>chefs needed</th>
         <th>waiters needed</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .="<tr>
             <td>" . $row["event_id"] . "<\td>
@@ -154,7 +154,7 @@ switch($option){
             INNER JOIN
         team15_Event_Customer AS ec ON p.person_id = ec.person_id
     GROUP BY p.first_name , p.last_name
-    HAVING num_of_events > 1;"
+    HAVING num_of_events > 1";
 
 $result = mysqli_query($connection, $query4);
 if (!$result) {
@@ -166,7 +166,7 @@ $tbl .= "<tr>
 <th>first name</th>
 <th>last name</th>
 <th>occouring events</th> 
-</tr>"
+</tr>";
 
 while ($row = mysqli_fetch_assoc($result)) {
     $tbl .="<tr>
@@ -184,8 +184,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         team15_Event AS ev
         WHERE
         ev.event_date >= DATE_SUB(CURDATE(), INTERVAL $numOfMonths MONTH)
-            AND ev.event_date < CURDATE();
-        "
+            AND ev.event_date < CURDATE()";
         
         $result = mysqli_query($connection, $query5);
         if (!$result) {
@@ -195,7 +194,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         $tbl .= "<tr>
         <th>event id</th>
         <th>incomes</th>
-        </tr>"
+        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .="<tr>
             <td>" . $row["event_id"] . "<\td>
