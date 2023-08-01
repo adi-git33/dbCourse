@@ -285,10 +285,10 @@ switch ($option) {
 
 $tbl .= " <\table>";
 $response = array('retVal' => $tbl);
+header('Location:result.php');
 echo json_encode($response);
 
 mysqli_free_result($result);
 
 mysqli_close($connection);
-header('Location:result.php');
 ?>
