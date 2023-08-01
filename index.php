@@ -45,16 +45,16 @@ include "db.php";
         <main>
             <div>
                 <h1>Queries, Procedures and Functions</h1>
-                <ol>
-                    <li>Display events from the past x weeks.</li>
-                    <li>Display future events and the costumer who made the event order.</li>
-                    <li>Display events that are short on Waiters or Chefs.</li>
-                    <li>Display customers who made more then one order.</li>
-                    <li>Display incomes from the past x months.</li>
-                    <li>Schedule employee to event.</li>
-                    <li>Give event price percentage discount.</li>
-                    <li>Display incomes for specific salesman in x month.</li>
-                </ol>
+                <ul id="QPF">
+                    <li>1. Display events from the past x weeks.</li>
+                    <li>2. Display future events and the costumer who made the event order.</li>
+                    <li>3. Display events that are short on Waiters or Chefs.</li>
+                    <li>4. Display customers who made more then one order.</li>
+                    <li>5. Display incomes from the past x months.</li>
+                    <li>6. Schedule employee to event.</li>
+                    <li>7. Give event price percentage discount.</li>
+                    <li>8. Display incomes for specific salesman in x month.</li>
+                </ul>
                 <form action="action.php">
                     <select class="form-select form-select-lg" aria-label="Large select example" data-bs-theme="dark"
                         name="qSelect" id="querSel">
@@ -68,7 +68,6 @@ include "db.php";
                         <option value="7">7</option>
                         <option value="8">8</option>
                     </select>
-                    <h3 id="selTitle"></h3>
                     <div class="mb-3" id="pastEv">
                         <label>Choose number of weeks</label>
                         <input type="number" class="form-control form-control-lg" placeholder="Number of weeks"
