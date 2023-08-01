@@ -27,7 +27,7 @@
     <div id="wrapper">
         <header>
             <section>
-                <a href="bookList.php" id="logo"></a>
+                <a href="index.php" id="logo"></a>
             </section>
             <section>
                 <img src="images/user.png" alt="profile">
@@ -48,7 +48,7 @@
                     <li>7. Give event price percentage discount.</li>
                     <li>8. Display incomes for specific salesman in x month.</li>
                 </ul>
-                <form action="result.php" id="frm">
+                <form action="action.php" id="frm">
                     <select class="form-select form-select-lg" aria-label="Large select example" data-bs-theme="dark"
                         name="qSelect" id="querSel">
                         <option selected disabled>Select Option</option>

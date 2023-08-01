@@ -52,18 +52,18 @@ $(document).ready(function () {
         }
     })
 
-    const savePost = async () => {
-        try {
-            debugger
-            let response = await fetch('action.php', {
-                method: 'GET',
-                body: new FormData(frm),
-            });
-            const result = await response.json();
-            tbl.html(result.retVal);
-        } catch (error) {
-            console.log(error);
-            tbl.html(("<span class='l'>" + error + "<span>"));
-        }
-    }
+    // const savePost = async () => {
+    //     try {
+    //         debugger
+    //         let response = await fetch('action.php', {
+    //             method: 'GET',
+    //             body: new FormData(frm),
+    //         });
+    //         const result = await response.json();
+    //         tbl.html(result.retVal);
+    //     } catch (error) {
+    //         console.log(error);
+    //         tbl.html(("<span class='l'>" + error + "<span>"));
+    //     }
+    // }
 });
