@@ -131,17 +131,6 @@ switch ($option) {
         <td>" . $row["first_name"] . "<\td>
         <td>" . $row["last_name"] . "<\td>
         <td>" . $row["phone"] . "<\td>
-        <td>" . $row["course_name"] . "<\td>
-        <td>" . $row["event_type_name"] . "<\td>
-        <td>" . $row["num_of_guest"] . "<\td>
-        <td>" . $row["event_date"] . "<\td>
-        <td>" . $row["price"] . "<\td>
-        <td>" . $row["person_id"] . "<\td>
-        <td>" . $row["address_name"] . "<\td>
-        <td>" . $row["city_name"] . "<\td>
-        <td>" . $row["first_name"] . "<\td>
-        <td>" . $row["last_name"] . "<\td>
-        <td>" . $row["phone"] . "<\td>
         <\tr>";
         }
 
@@ -177,8 +166,6 @@ switch ($option) {
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
-            <td>" . $row["chefs_needed"] . "<\td>
-            <td>" . $row["waiters_needed"] . "<\td>
             <td>" . $row["chefs_needed"] . "<\td>
             <td>" . $row["waiters_needed"] . "<\td>
             <\tr>";
@@ -236,7 +223,6 @@ switch ($option) {
         if (!$result) {
             die("DB query failed.");
         }
-        // $tbl = '<table class="table table-dark table-hover">';
 
         $tbl .= "<tr>
         <th>event id</th>
@@ -245,7 +231,6 @@ switch ($option) {
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
-            <td>" . $row["incomes"] . "<\td>
             <td>" . $row["incomes"] . "<\td>
             <\tr>";
         }
