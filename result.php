@@ -37,12 +37,12 @@ if ((isset($_GET["eveIDSix"])) && (isset($_GET["empIDSix"]))) {
     $perc = $_GET['percent'];
 }
 
-
+$dupKey = 0;
+$sale = 0;
+$notSaleman = 0;
 $tbl = '<table class="table table-dark table-hover table-responsive-xl">';
 if ($option == 1) {
     $query = 'SELECT ev.event_id, evc.course_name, evt.event_type_name, ev.num_of_guest, ev.event_date, ev.price FROM team15_Event AS ev INNER JOIN team15_Event_Course AS evc ON ev.course_id = evc.course_id INNER JOIN team15_Event_Type AS evt ON ev.event_type_id = evt.event_type_id WHERE event_date >= DATE_SUB(CURDATE(), INTERVAL ' . $numOfWeeks . ' WEEK) AND event_date <= CURDATE()';
-
-    // echo $query;
     $result = mysqli_query($connection, $query);
     if (!$result) {
         die("DB query failed.");
@@ -98,19 +98,35 @@ if ($option == 1) {
         $tbl .= "<tr><td>" . $row["incomes"] . "</td></tr>";
     }
 } else if ($option == 6) {
-    $query = 'call team15_add_employee_into_team (' . $eveID6 . ', ' . $empId6 . ')';
-
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
+    $checkQ = 'SELECT * FROM dbCourseSt23.team15_Event_Employee as ee INNER JOIN team15_Employee as e WHERE NOT(e.employee_type_id = 1)';
+    $resultQ = mysqli_query($connection, $checkQ);
+    if (!$resultQ) {
         die("DB query failed.");
     }
-
-    $tbl .= "<tr><th>message</th></tr>";
-     while ($row = mysqli_fetch_assoc($result)) {
-        $tbl .= "<tr><td>" . $row['message'] . "</td></tr>";
+    
+    while ($rowQ = mysqli_fetch_assoc($resultQ)) {
+        if (($rowQ['event_id'] == $eveID6) && ($rowQ['employee_id'] == $empId6)){
+            $dupKey = 1;
+        }
     }
+    if ( $dupKey == 1){
+        $tbl .= "<tr><th>Notice</th></tr>";
+        $tbl .= "<tr><td>Employee already has a shift for this event.</td></tr>";
+    }else{
+        $query = 'call team15_add_employee_into_team (' . $eveID6 . ', ' . $empId6 . ')';
+    
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die("DB query failed.");
+        }
+    
+        $tbl .= "<tr><th>Notice</th></tr>";
+         while ($row = mysqli_fetch_assoc($result)) {
+            $tbl .= "<tr><td>" . $row['message'] . "</td></tr>";
+        }
+    }
+
 } else if ($option == 7) {
-    $sale = 0;
     $query = 'call team15_percentage_discount  (' . $eveID7 . ', ' . $perc . ')';
     $result = mysqli_query($connection, $query);
     if (!$result) {
@@ -139,6 +155,28 @@ if ($option == 1) {
     }
     else{
         $tbl .= "<tr><th>message</th></tr><tr><td>The employee isn't a salesman</td></tr>";
+    }
+}
+    $checkQ ="SELECT * FROM team15_Person AS per INNER JOIN team15_Employee AS emp ON per.person_id = emp.person_id WHERE per.first_name = '" . $fname ."' AND per.last_name = '" . $lname . "' AND emp.employee_type_id = '1';";
+    $resultQ = mysqli_query($connection, $checkQ);
+    if (!$resultQ) {
+        die("DB query failed.");
+    }
+    if($resultQ && mysqli_num_rows($resultQ) > 0){
+        $query = 'select team15_calc_sales("' . $fname . '", "' . $lname . '", "' . $month . '", "' . $year . '") AS sales';
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die("DB query failed.");
+        }
+
+        $tbl .= "<tr><th>Sales</th></tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tbl .= "<tr><td>" . $row["sales"] . "</td></tr>";
+        }
+    }
+    else{
+        $tbl .= "<tr><th>message</th></tr><tr><td>The employee isn't a salesman</td></tr>";
+        $notSaleman = 1;
     }
 }
 
@@ -197,7 +235,18 @@ $tbl .= " </table>";
         </main>
     </div>
     <?php
-    mysqli_free_result($result);
+    if ($option == 6){
+        if ($dupKey == 0){
+            mysqli_free_result($result);
+        }
+    } else if ($option == 8){
+        if ($notSaleman == 0){
+            mysqli_free_result($result);
+        }
+    }  
+    else{
+        mysqli_free_result($result);
+    }
     if ($option == 7) {
         if ($sale == 1) {
             mysqli_free_result($resultPast);
