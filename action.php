@@ -44,7 +44,6 @@ switch ($option) {
         $result = mysqli_query($connection, $query1);
         if (!$result) {
             die("DB query failed.");
-            die("DB query failed.");
         }
 
         $tbl .= "<tr>
