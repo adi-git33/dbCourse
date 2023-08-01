@@ -1,25 +1,43 @@
 <?php
 include "db.php";
 
-$query = "SELECT DISTINCT * FROM tbl_212_protest AS prot INNER JOIN tbl_212_prot_user AS prot_user ON prot_user.prot_id = prot.prot_id
-    INNER JOIN tbl_212_users AS users ON prot_user.user_id = users.user_id";
+if ((isset($_GET["eveIDSix"])) && (isset($_GET["empIDSix"]))) {
+    $eveID6 = $_GET['eveIDSix'];
+    $empId6 = $_GET['empIDSix'];
+    $query = 'call team15_add_employee_into_team (' . $eveID6 . ', ' . $empId6 . '';
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("DB query failed.");
+    }
+    $tbl = '<table class="table table-dark table-hover">';
 
-$result = mysqli_query($connection, $query);
-if (!$result) {
-    die("DB query failed.");
+    while ($row = mysqli_fetch_assoc($result)) {
+        $tbl .= "<tr>
+            <td>" . $row['']  . "</td>
+    <\tr>";
+    }
+
+    $tbl .= '</table>';
+
+
+
+    $response = array('retVal' => $list);
+    echo json_encode($response);
+
+    mysqli_free_result($result);
+    mysqli_free_result($catResult);
+
+    mysqli_close($connection);
+
 }
 
-$tbl = '<table class="table table-dark table-hover">';
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $tbl .= "<tr>
-<td>row 1, cell 1<\td>
-<td>row 1, cell 2<\td>
-<\tr>";
-}
 
-$tbl .= '</table>';
 
-isset($_GET["sort"])
 
-    ?>
+
+
+
+
+
+?>
