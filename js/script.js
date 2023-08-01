@@ -40,30 +40,17 @@ $(document).ready(function () {
                     saleIncome.css("display", "block")
                 }
             } else {
-                savePost();
                 count = 0;
                 sub.css("display", "none");
+                frm.off('submit');
+                frm.submit(); 
             }
         }
         else {
-            savePost();
             count = 0;
             sub.css("display", "none");
+            frm.off('submit');
+            frm.submit(); 
         }
     })
-
-    // const savePost = async () => {
-    //     try {
-    //         debugger
-    //         let response = await fetch('action.php', {
-    //             method: 'GET',
-    //             body: new FormData(frm[0]),
-    //         });
-    //         const result = await response.json();
-    //         tbl.html(result.retVal);
-    //     } catch (error) {
-    //         console.log(error);
-    //         tbl.html(("<span class='l'>" + error + "<span>"));
-    //     }
-    // }
 });

@@ -243,7 +243,7 @@ switch ($option) {
         }
         break;
     case 8:
-        
+
         break;
 }
 
@@ -290,6 +290,9 @@ $tbl .= " <\table>";
             <div>
                 <h1>Result</h1>
                 <div id="result">
+                    <?php
+                    echo $tbl;
+                    ?>
                 </div>
             </div>
         </main>
@@ -300,7 +303,6 @@ $tbl .= " <\table>";
 </body>
 
 </html>
-
 <?php
 mysqli_close($connection);
 ?>
