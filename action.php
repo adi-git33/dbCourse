@@ -7,6 +7,23 @@ if (isset($_GET["numOfMonths"])) {
 if (isset($_GET["numOfWeeks"])) {
     $numOfWeeks = $_GET['numOfWeeks'];
 }
+
+if (isset($_GET["fname"])) {
+    $fname = $_GET['fname'];
+}
+
+if (isset($_GET["lname"])) {
+    $lname = $_GET['lname'];
+}
+
+if (isset($_GET["monthsEight"])) {
+    $month = $_GET['monthsEight'];
+}
+
+if (isset($_GET["yearEight"])) {
+    $year = $_GET['yearEight'];
+}
+
 if (isset($_GET["qSelect"])) {
     $option = $_GET["qSelect"];
 }
@@ -220,7 +237,7 @@ switch ($option) {
         if (!$result) {
             die("DB query failed.");
         }
-        $tbl = '<table class="table table-dark table-hover">';
+        // $tbl = '<table class="table table-dark table-hover">';
 
         $tbl .= "<tr>
         <th>event id</th>
@@ -265,7 +282,20 @@ switch ($option) {
         }
         break;
     case 8:
-        
+        $quary8 = 'select team15_calc_sales('.$fname.','.$lname.','.$month.','.$year.') AS sales;';
+        $result = mysqli_query($connection, $query8);
+        if (!$result) {
+            die("DB query failed.");
+        }
+
+        $tbl .= "<tr>
+        <th>Sales</th>
+        </tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tbl .= "<tr>
+            <td>" . $row["sales"] . "<\td>
+            <\tr>";
+        }
         break;
 }
 
