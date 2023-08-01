@@ -2,13 +2,11 @@
 include "db.php";
 
 if (isset($_GET["numOfMonths"])) {
-if (isset($_GET["numOfMonths"])) {
     $numOfMonths = $_GET['numOfMonths'];
 }
 if (isset($_GET["numOfWeeks"])) {
     $numOfWeeks = $_GET['numOfWeeks'];
 }
-if (isset($_GET["qSelect"])) {
 if (isset($_GET["qSelect"])) {
     $option = $_GET["qSelect"];
 }
@@ -24,7 +22,6 @@ if ((isset($_GET["eveIDSix"])) && (isset($_GET["empIDSix"]))) {
 
 
 $tbl = '<table class="table table-dark table-hover">';
-switch ($option) {
 switch ($option) {
     case 1:
         $quary1 = "SELECT 
@@ -58,9 +55,7 @@ switch ($option) {
         <th>date</th>
         <th>price</th>
         </tr>";
-        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .= "<tr>
             $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
             <td>" . $row["course_name"] . "<\td>
@@ -75,8 +70,6 @@ switch ($option) {
             <td>" . $row["price"] . "<\td>
             <\tr>";
         }
-        }
-
         break;
     case 2:
         $query2 = "SELECT 
@@ -95,8 +88,6 @@ switch ($option) {
         if (!$result) {
             die("DB query failed.");
         }
-
-
         $tbl .= "<tr>
         <th>event id</th>
         <th>course type</th>
@@ -111,9 +102,7 @@ switch ($option) {
         <th>last name</th> 
         <th>phone</th>
         </tr>";
-        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .= "<tr>
             $tbl .= "<tr>
         <td>" . $row["event_id"] . "<\td>
         <td>" . $row["course_name"] . "<\td>
@@ -170,9 +159,7 @@ switch ($option) {
         <th>chefs needed</th>
         <th>waiters needed</th>
         </tr>";
-        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .= "<tr>
             $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
             <td>" . $row["chefs_needed"] . "<\td>
@@ -181,8 +168,6 @@ switch ($option) {
             <td>" . $row["waiters_needed"] . "<\td>
             <\tr>";
         }
-        }
-
         break;
     case 4:
         $quary4 = "SELECT 
@@ -242,16 +227,12 @@ switch ($option) {
         <th>event id</th>
         <th>incomes</th>
         </tr>";
-        </tr>";
         while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .= "<tr>
             $tbl .= "<tr>
             <td>" . $row["event_id"] . "<\td>
             <td>" . $row["incomes"] . "<\td>
             <td>" . $row["incomes"] . "<\td>
             <\tr>";
-        }
-        break;
         }
         break;
     case 6:
