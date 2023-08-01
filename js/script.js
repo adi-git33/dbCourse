@@ -2,7 +2,7 @@ $(document).ready(function () {
     const sub = $("#submitBtn");
     const tbl = $(".result");
     let count = 0;
-    let frm = $("#frm");
+    let frm = document.getElementById("frm");
 
     frm.on('submit', function (e) {
         debugger
@@ -41,29 +41,32 @@ $(document).ready(function () {
                 }
             } else {
                 count = 0;
-                frm.off('submit');
-                frm.submit(); 
+                savePost();
+                // frm.off('submit');
+                // frm.submit(); 
             }
         }
         else {
             count = 0;
-            frm.off('submit');
-            frm.submit(); 
+            savePost();
+            // frm.off('submit');
+            // frm.submit(); 
         }
     })
 
-    // const savePost = async () => {
-    //     try {
-    //         debugger
-    //         let response = await fetch('action.php', {
-    //             method: 'GET',
-    //             body: new FormData(frm),
-    //         });
-    //         const result = await response.json();
-    //         tbl.html(result.retVal);
-    //     } catch (error) {
-    //         console.log(error);
-    //         tbl.html(("<span class='l'>" + error + "<span>"));
-    //     }
-    // }
+    const savePost = async() => {
+        try {
+        debugger
+
+            let response = await fetch('action.php', {
+                method: 'GET',
+                body: new FormData(frm),
+            });
+            const result = await response.json();
+            tbl.html(result.retVal);
+        } catch (error) {
+            console.log(error);
+            tbl.html(("<span class='l'>" + error + "<span>"));
+        }
+    }
 });

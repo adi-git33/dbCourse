@@ -89,15 +89,34 @@ switch ($option) {
         break;
     case 2:
         $query2 = "SELECT 
-        *
-        FROM
+        ev.event_id,
+        evf.course_name,
+        evt.event_type_name,
+        ev.num_of_guest,
+        ev.event_date,
+        ev.price,
+        per.person_id,
+        ad.address_name,
+        ct.city_name,
+        per.first_name,
+        per.last_name,
+        per.phone
+    FROM
         team15_Event AS ev
+            INNER JOIN
+        team15_Event_Type AS evt ON ev.event_type_id = evt.event_type_id
             INNER JOIN
         team15_Event_Customer AS evco ON ev.event_id = evco.event_id
             INNER JOIN
+        team15_Event_Course AS evf ON evf.course_id = ev.course_id
+            INNER JOIN
         team15_Person AS per ON per.person_id = evco.person_id
-        WHERE
-        ev.event_date > NOW();";
+            INNER JOIN
+        team15_Address AS ad ON per.address_id = ad.address_id
+            INNER JOIN
+        team15_City AS ct ON ct.city_id = ad.city_id
+    WHERE
+        ev.event_date > NOW()";
 
         $result = mysqli_query($connection, $query2);
         if (!$result) {
@@ -150,7 +169,7 @@ switch ($option) {
             team15_Event AS ev) AS emp_count
         WHERE
         emp_count.chefs_on_event < CEILING(emp_count.num_of_guest / 20)
-            AND emp_count.waiters_on_event < CEILING(emp_count.num_of_guest / 35);";
+            AND emp_count.waiters_on_event < CEILING(emp_count.num_of_guest / 35)";
 
 
         $result = mysqli_query($connection, $query3);
@@ -285,9 +304,8 @@ switch ($option) {
 
 $tbl .= " <\table>";
 $response = array('retVal' => $tbl);
-header('Location:result.php');
+// header('Location:result.php');
 echo json_encode($response);
-
 mysqli_free_result($result);
 
 mysqli_close($connection);

@@ -247,6 +247,9 @@
 // }
 
 // $tbl .= " <\table>";
+
+$tblecho = $_GET["tbl"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
