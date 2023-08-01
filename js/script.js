@@ -2,8 +2,9 @@ $(document).ready(function () {
     const sub = $("#submitBtn");
     const tbl = $(".result");
     let count = 0;
+    let frm = $("#frm");
 
-    sub.on('click', function (e) {
+    frm.on('submit', function (e) {
         debugger
         e.preventDefault();
         if (count == 0) {
@@ -12,13 +13,13 @@ $(document).ready(function () {
             sel.css("display", "none");
 
             if ((query == 1) || (query == 5) || (query == 6) || (query == 7) || (query == 8)) {
+                count++;
                 let QPF = $("#QPF").children();
-                for (let i=0; i<=8; i++){
-                    if(i != (query-1)) {
-                        $(QPF.eq(i)).css("display", "none")
+                for (let i = 0; i <= 8; i++) {
+                    if (i != (query - 1)) {
+                        $(QPF.eq(i)).css("display", "none");
                     }
                 }
-
                 if (query == 1) {
                     let pastEv = $("#pastEv");
                     pastEv.css("display", "block");
@@ -38,31 +39,31 @@ $(document).ready(function () {
                     let saleIncome = $("#saleIncome");
                     saleIncome.css("display", "block")
                 }
-                count++;
             } else {
                 savePost();
                 count = 0;
+                sub.css("display", "none");
             }
-
         }
         else {
             savePost();
             count = 0;
+            sub.css("display", "none");
         }
     })
 
-    const savePost = async () => {
-        try {
-            debugger
-            let response = await fetch('action.php', {
-                method: 'GET',
-                body: new FormData(form),
-            });
-            const result = await response.json();
-            tbl.html(result.retVal);
-        } catch (error) {
-            console.log(error);
-            tbl.html(("<span class='l'>" + error + "<span>"));
-        }
-    }
+    // const savePost = async () => {
+    //     try {
+    //         debugger
+    //         let response = await fetch('action.php', {
+    //             method: 'GET',
+    //             body: new FormData(frm[0]),
+    //         });
+    //         const result = await response.json();
+    //         tbl.html(result.retVal);
+    //     } catch (error) {
+    //         console.log(error);
+    //         tbl.html(("<span class='l'>" + error + "<span>"));
+    //     }
+    // }
 });

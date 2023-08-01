@@ -1,9 +1,3 @@
-<?php
-include "db.php";
-
-// $query = 'SELECT * FROM team15_Event';
-// $result = mysqli_query($connection, $query);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +48,7 @@ include "db.php";
                     <li>7. Give event price percentage discount.</li>
                     <li>8. Display incomes for specific salesman in x month.</li>
                 </ul>
-                <form action="action.php">
+                <form action="result.php" id="frm">
                     <select class="form-select form-select-lg" aria-label="Large select example" data-bs-theme="dark"
                         name="qSelect" id="querSel">
                         <option selected disabled>Select Option</option>
