@@ -100,63 +100,70 @@ if ($option == 1) {
         $tbl .= "<tr><td>" . $row["incomes"] . "</td></tr>";
     }
 } else if ($option == 6) {
+    // duplicate key
     $checkQ = 'SELECT * FROM dbCourseSt23.team15_Event_Employee as ee INNER JOIN team15_Employee as e WHERE NOT(e.employee_type_id = 1)';
     $resultQ = mysqli_query($connection, $checkQ);
     if (!$resultQ) {
         die("DB query failed.");
     }
-    
     while ($rowQ = mysqli_fetch_assoc($resultQ)) {
-        if (($rowQ['event_id'] == $eveID6) && ($rowQ['employee_id'] == $empId6)){
+        if (($rowQ['event_id'] == $eveID6) && ($rowQ['employee_id'] == $empId6)) {
             $dupKey = 1;
         }
     }
     if (!$resultQ) {
         die("DB query failed.");
     }
-
-    $empCheck = 'SELECT * FROM team15_Employee';
+    // employee exists
+    $empCheck = 'SELECT * FROM team15_Employee WHERE employee_id='.$empId6;
     $resultEmp = mysqli_query($connection, $empCheck);
     if (!$resultEmp) {
         die("DB query failed.");
     }
-    
-    while ($rowEmp = mysqli_fetch_assoc($resultEmp)) {
-        if ($rowEmp['employee_id'] != $empCheck){
-            $empCheck = 1;
-        }
+    if ($resultEmp && mysqli_num_rows($resultEmp) == 0) {
+        $empCheck = 1;
     }
 
-    $checkQ ='select * from team15_Event where event_id='.$eveID7.';';
-    $resultQ = mysqli_query($connection, $checkQ);
-    if ( $dupKey == 1){
+    // Event Exists
+    $evQuer = 'select * from team15_Event where event_id=' . $eveID6;
+    $resultEv = mysqli_query($connection, $evQuer);
+    if (!$resultEv) {
+        die("DB query failed.");
+    }
+    if ($resultEv && mysqli_num_rows($resultEv) == 0) {
+        $evCheck = 1;
+    }
+
+    if ($dupKey == 1) {
         $tbl .= "<tr><th>Notice</th></tr>";
         $tbl .= "<tr><td>Employee already has a shift for this event.</td></tr>";
-    }else if ($empCheck == 1){
+    } else if ($empCheck == 1) {
         $tbl .= "<tr><th>Notice</th></tr>";
         $tbl .= "<tr><td>Employee Doesn't Exist.</td></tr>";
-    }else
-    {
+    } else if ($evCheck == 1) {
+        $tbl .= "<tr><th>Notice</th></tr>";
+        $tbl .= "<tr><td>Event Doesn't Exist.</td></tr>";
+    } else {
         $query = 'call team15_add_employee_into_team (' . $eveID6 . ', ' . $empId6 . ')';
-    
+
         $result = mysqli_query($connection, $query);
         if (!$result) {
             die("DB query failed.");
         }
-    
+
         $tbl .= "<tr><th>Notice</th></tr>";
-         while ($row = mysqli_fetch_assoc($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $tbl .= "<tr><td>" . $row['message'] . "</td></tr>";
         }
     }
 
 } else if ($option == 7) {
-    $checkQ ='select * from team15_Event where event_id='.$eveID7.';';
+    $checkQ = 'select * from team15_Event where event_id=' . $eveID7 . ';';
     $resultQ = mysqli_query($connection, $checkQ);
     if (!$resultQ) {
         die("DB query failed.");
     }
-    if($resultQ && mysqli_num_rows($resultQ) > 0){
+    if ($resultQ && mysqli_num_rows($resultQ) > 0) {
         $query = 'call team15_percentage_discount  (' . $eveID7 . ', ' . $perc . ')';
         $result = mysqli_query($connection, $query);
         if (!$result) {
@@ -170,33 +177,12 @@ if ($option == 1) {
         $evCheck++;
     }
 } else {
-    $quary ="SELECT * FROM team15_Person AS per INNER JOIN team15_Employee AS emp ON per.person_id = emp.person_id WHERE per.first_name = '".$fname."' AND per.last_name = '".$lname."' AND emp.employee_type_id = '1';";
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
-        die("DB query failed.");
-    }
-    if($result && mysqli_num_rows($result) > 0){
-        $query = 'select team15_calc_sales("' . $fname . '", "' . $lname . '", "' . $month . '", "' . $year . '") AS sales';
-        $result = mysqli_query($connection, $query);
-        if (!$result) {
-            die("DB query failed.");
-        }
-    
-        $tbl .= "<tr><th>Sales</th></tr>";
-        while ($row = mysqli_fetch_assoc($result)) {
-            $tbl .= "<tr><td>" . $row["sales"] . "</td></tr>";
-        }
-    }
-    else{
-        $tbl .= "<tr><th>message</th></tr><tr><td>The employee isn't a salesman</td></tr>";
-    }
-}
-    $checkQ ="SELECT * FROM team15_Person AS per INNER JOIN team15_Employee AS emp ON per.person_id = emp.person_id WHERE per.first_name = '" . $fname ."' AND per.last_name = '" . $lname . "' AND emp.employee_type_id = '1';";
+    $checkQ = "SELECT * FROM team15_Person AS per INNER JOIN team15_Employee AS emp ON per.person_id = emp.person_id WHERE per.first_name = '" . $fname . "' AND per.last_name = '" . $lname . "' AND emp.employee_type_id = '1';";
     $resultQ = mysqli_query($connection, $checkQ);
     if (!$resultQ) {
         die("DB query failed.");
     }
-    if($resultQ && mysqli_num_rows($resultQ) > 0){
+    if ($resultQ && mysqli_num_rows($resultQ) > 0) {
         $query = 'select team15_calc_sales("' . $fname . '", "' . $lname . '", "' . $month . '", "' . $year . '") AS sales';
         $result = mysqli_query($connection, $query);
         if (!$result) {
@@ -207,8 +193,7 @@ if ($option == 1) {
         while ($row = mysqli_fetch_assoc($result)) {
             $tbl .= "<tr><td>" . $row["sales"] . "</td></tr>";
         }
-    }
-    else{
+    } else {
         $tbl .= "<tr><th>message</th></tr><tr><td>The employee isn't a salesman</td></tr>";
         $notSaleman = 1;
     }
@@ -269,21 +254,19 @@ $tbl .= " </table>";
         </main>
     </div>
     <?php
-    if ($option == 6){
-        if ($dupKey == 0 || $empCheck == 0 || ($evCheck == 0)){
+    if ($option == 6) {
+        if ($dupKey == 0 && $empCheck == 0 && ($evCheck == 0)) {
             mysqli_free_result($result);
         }
-    } else if ($option == 7){
-        if ($evCheck == 0){
+    } else if ($option == 7) {
+        if ($evCheck == 0) {
             mysqli_free_result($result);
         }
-    }
-    else if ($option == 8){
-        if ($notSaleman == 0){
+    } else if ($option == 8) {
+        if ($notSaleman == 0) {
             mysqli_free_result($result);
         }
-    }  
-    else{
+    } else {
         mysqli_free_result($result);
     }
     if ($option == 7) {

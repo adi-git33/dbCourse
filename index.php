@@ -85,7 +85,7 @@
                         <input type="number" class="form-control form-control-lg" placeholder="1" data-bs-theme="dark"
                             name="eveIDSeven" min="1"> 
                         <label for="">Enter percentage in float form</label>
-                        <input type="number" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
+                        <input type="text" class="form-control form-control-lg" placeholder="0.2" data-bs-theme="dark"
                             name="percent">
                     </div>
                     <div class="mb-3" id="saleIncome">
