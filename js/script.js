@@ -24,24 +24,40 @@ $(document).ready(function () {
                     let pastEv = $("#pastEv");
                     pastEv.css("display", "block");
                     let pastEvChild =pastEv.children("input");
-                    for (let i = 0; i < pastEvChild.lengh; i++){
-                        
+                    for (let i = 0; i < pastEvChild.length; i++){
+                        pastEvChild.attr("required","true");
                     }
                 }
                 else if (query == 5) {
                     let incomes = $("#incomes");
                     incomes.css("display", "block");
+                    let incomesChild =incomes.children("input");
+                    for (let i = 0; i < incomesChild.length; i++){
+                        incomesChild.attr("required","true");
+                    }
                 }
                 else if (query == 6) {
                     let insertEmp = $("#insertEmp");
                     insertEmp.css("display", "block");
+                    let incEmpChild =insertEmp.children("input");
+                    for (let i = 0; i < incEmpChild.length; i++){
+                        incEmpChild.attr("required","true");
+                    }
                 } else if (query == 7) {
                     let discount = $("#discount");
                     discount.css("display", "block");
+                    let discountChild =discount.children("input");
+                    for (let i = 0; i < discountChild.length; i++){
+                        discountChild.attr("required","true");
+                    }
                 }
                 else {
                     let saleIncome = $("#saleIncome");
-                    saleIncome.css("display", "block")
+                    saleIncome.css("display", "block");
+                    let saleIncChild =saleIncome.children("input");
+                    for (let i = 0; i < saleIncChild.length; i++){
+                        saleIncChild.attr("required","true");
+                    }
                 }
             } else {
                 count = 0;
