@@ -101,7 +101,7 @@ if ($option == 1) {
     }
 } else if ($option == 6) {
     // duplicate key
-    $checkQ = 'SELECT * FROM dbCourseSt23.team15_Event_Employee as ee INNER JOIN team15_Employee as e WHERE NOT(e.employee_type_id = 1)';
+    $checkQ = 'SELECT DISTINCT ee.event_id, ee.employee_id FROM team15_Event_Employee as ee INNER JOIN team15_Employee as e WHERE NOT(e.employee_type_id = 1)';
     $resultQ = mysqli_query($connection, $checkQ);
     if (!$resultQ) {
         die("DB query failed.");
